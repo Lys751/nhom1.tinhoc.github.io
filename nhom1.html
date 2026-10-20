@@ -2,444 +2,86 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Minecraft World - Gallery</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vẻ đẹp của Minecraft</title>
 
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    html {
-      scroll-behavior: smooth;
-    }
+        body {
+            background: #101810;
+            color: white;
+            font-family: Arial, sans-serif;
+            padding: 35px 5%;
+        }
 
-    body {
-      font-family: Arial, sans-serif;
-      background: #101812;
-      color: white;
-    }
+        h1 {
+            text-align: center;
+            font-size: clamp(28px, 5vw, 45px);
+            margin-bottom: 35px;
+            color: #b9f6a5;
+            text-shadow: 0 0 20px #6cbb65;
+        }
 
-    /* Thanh điều hướng */
-    header {
-      width: 100%;
-      padding: 20px 8%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: rgba(10, 20, 14, 0.95);
-      position: sticky;
-      top: 0;
-      z-index: 10;
-      border-bottom: 1px solid #344b35;
-    }
+        .gallery {
+            max-width: 1200px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
 
-    .logo {
-      color: #8ce477;
-      font-size: 25px;
-      font-weight: bold;
-      letter-spacing: 1px;
-    }
+        .gallery img {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+            display: block;
+            border-radius: 12px;
+            transition: 0.4s;
+            box-shadow: 0 5px 20px #0006;
+        }
 
-    nav a {
-      color: white;
-      text-decoration: none;
-      margin-left: 25px;
-      font-size: 15px;
-      transition: 0.3s;
-    }
+        .gallery img:first-child {
+            grid-column: 1 / -1;
+            height: 420px;
+        }
 
-    nav a:hover {
-      color: #8ce477;
-    }
+        .gallery img:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 25px #8de06c66;
+        }
 
-    /* Phần giới thiệu */
-    .hero {
-      min-height: 520px;
-      display: flex;
-      align-items: center;
-      padding: 70px 9%;
-      background:
-        linear-gradient(90deg, rgba(5, 16, 10, 0.88), rgba(5, 16, 10, 0.15)),
-        url("images (1).jfif") center/cover no-repeat;
-    }
+        @media (max-width: 600px) {
+            .gallery {
+                grid-template-columns: 1fr;
+            }
 
-    .hero-content {
-      max-width: 650px;
-    }
+            .gallery img:first-child {
+                grid-column: auto;
+                height: 250px;
+            }
 
-    .tag {
-      display: inline-block;
-      background: #315c35;
-      color: #c8ffb9;
-      padding: 9px 15px;
-      border-radius: 20px;
-      font-size: 13px;
-      margin-bottom: 22px;
-    }
-
-    .hero h1 {
-      font-size: clamp(38px, 6vw, 68px);
-      line-height: 1.1;
-      margin-bottom: 20px;
-      text-shadow: 2px 4px 12px #000;
-    }
-
-    .hero h1 span {
-      color: #91e77a;
-    }
-
-    .hero p {
-      color: #e1e8df;
-      font-size: 17px;
-      line-height: 1.8;
-      margin-bottom: 30px;
-    }
-
-    .btn {
-      display: inline-block;
-      padding: 14px 25px;
-      border-radius: 8px;
-      background: #78c95e;
-      color: #12200f;
-      font-weight: bold;
-      text-decoration: none;
-      transition: 0.3s;
-    }
-
-    .btn:hover {
-      background: #a1f087;
-      transform: translateY(-3px);
-    }
-
-    /* Bộ sưu tập */
-    .gallery {
-      padding: 75px 8%;
-    }
-
-    .section-title {
-      text-align: center;
-      margin-bottom: 45px;
-    }
-
-    .section-title h2 {
-      font-size: 36px;
-      margin-bottom: 12px;
-    }
-
-    .section-title p {
-      color: #aab8a8;
-      line-height: 1.6;
-    }
-
-    .section-title span {
-      color: #8ce477;
-    }
-
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 25px;
-    }
-
-    .card {
-      background: #1a281d;
-      border: 1px solid #344b35;
-      border-radius: 14px;
-      overflow: hidden;
-      transition: 0.35s;
-    }
-
-    .card:hover {
-      transform: translateY(-8px);
-      border-color: #8ce477;
-      box-shadow: 0 12px 35px #0006;
-    }
-
-    .card img {
-      width: 100%;
-      height: 230px;
-      object-fit: cover;
-      display: block;
-      cursor: pointer;
-      transition: 0.4s;
-    }
-
-    .card:hover img {
-      transform: scale(1.04);
-    }
-
-    .image-wrap {
-      overflow: hidden;
-    }
-
-    .card-content {
-      padding: 22px;
-    }
-
-    .card-content h3 {
-      font-size: 21px;
-      margin-bottom: 12px;
-    }
-
-    .card-content p {
-      color: #b7c3b5;
-      font-size: 14px;
-      line-height: 1.7;
-      margin-bottom: 18px;
-    }
-
-    .category {
-      display: inline-block;
-      font-size: 12px;
-      color: #a8f391;
-      background: #2a422d;
-      padding: 7px 11px;
-      border-radius: 5px;
-    }
-
-    /* Khu vực giới thiệu */
-    .about {
-      padding: 65px 8%;
-      text-align: center;
-      background: #19251b;
-    }
-
-    .about h2 {
-      font-size: 32px;
-      margin-bottom: 18px;
-    }
-
-    .about p {
-      max-width: 700px;
-      margin: 0 auto;
-      color: #b7c3b5;
-      line-height: 1.9;
-    }
-
-    footer {
-      padding: 25px;
-      text-align: center;
-      color: #9eac9c;
-      background: #0b110d;
-      font-size: 14px;
-    }
-
-    /* Xem ảnh phóng to */
-    .lightbox {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.93);
-      z-index: 100;
-      justify-content: center;
-      align-items: center;
-      padding: 25px;
-    }
-
-    .lightbox img {
-      max-width: 95%;
-      max-height: 85vh;
-      object-fit: contain;
-      border-radius: 8px;
-    }
-
-    .close {
-      position: absolute;
-      top: 20px;
-      right: 30px;
-      font-size: 42px;
-      color: white;
-      cursor: pointer;
-    }
-
-    @media (max-width: 900px) {
-      .gallery-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-
-      .hero {
-        min-height: 450px;
-      }
-    }
-
-    @media (max-width: 600px) {
-      header {
-        padding: 18px 5%;
-        flex-direction: column;
-        gap: 16px;
-      }
-
-      nav a {
-        margin: 0 9px;
-        font-size: 13px;
-      }
-
-      .hero {
-        padding: 65px 7%;
-        min-height: 450px;
-      }
-
-      .hero p {
-        font-size: 15px;
-      }
-
-      .gallery {
-        padding: 55px 6%;
-      }
-
-      .gallery-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .card img {
-        height: 240px;
-      }
-
-      .section-title h2 {
-        font-size: 29px;
-      }
-    }
-  </style>
+            .gallery img {
+                height: 250px;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
-  <header>
-    <div class="logo">⛏ MINECRAFT WORLD</div>
+    <h1>Vẻ đẹp của Minecraft</h1>
 
-    <nav>
-      <a href="#home">Trang chủ</a>
-      <a href="#gallery">Thư viện</a>
-      <a href="#about">Giới thiệu</a>
-    </nav>
-  </header>
-
-  <section class="hero" id="home">
-    <div class="hero-content">
-      <span class="tag">✦ KHÁM PHÁ THẾ GIỚI MINECRAFT</span>
-
-      <h1>Build Your<br><span>Dream World</span></h1>
-
-      <p>
-        Khám phá những công trình kiến trúc tuyệt đẹp,
-        những ngọn núi hùng vĩ và khu rừng hoa anh đào
-        đầy thơ mộng trong thế giới Minecraft.
-      </p>
-
-      <a href="#gallery" class="btn">Khám phá ngay ↗</a>
+    <div class="gallery">
+        <img src="images.jfif" alt="Lâu đài Minecraft">
+        <img src="images (1).jfif" alt="Núi Minecraft">
+        <img src="images (2).jfif" alt="Rừng hoa anh đào Minecraft">
     </div>
-  </section>
-
-  <section class="gallery" id="gallery">
-    <div class="section-title">
-      <h2>Our <span>Worlds</span></h2>
-      <p>Những khung cảnh Minecraft tuyệt đẹp dành cho bạn.</p>
-    </div>
-
-    <div class="gallery-grid">
-
-      <article class="card">
-        <div class="image-wrap">
-          <img
-            src="images (1).jfif"
-            alt="Lâu đài Minecraft giữa cánh đồng xanh"
-            onclick="openImage(this)"
-          >
-        </div>
-
-        <div class="card-content">
-          <h3>Fantasy Kingdom</h3>
-          <p>
-            Lâu đài cổ tích với kiến trúc tinh xảo,
-            cánh đồng xanh và khung cảnh làng quê yên bình.
-          </p>
-          <span class="category">🏰 Architecture</span>
-        </div>
-      </article>
-
-      <article class="card">
-        <div class="image-wrap">
-          <img
-            src="images (2).jfif"
-            alt="Dãy núi Minecraft dưới ánh hoàng hôn"
-            onclick="openImage(this)"
-          >
-        </div>
-
-        <div class="card-content">
-          <h3>Mountain Paradise</h3>
-          <p>
-            Những dãy núi hùng vĩ, rừng cây thông
-            và ánh hoàng hôn tạo nên phong cảnh ấn tượng.
-          </p>
-          <span class="category">⛰ Nature</span>
-        </div>
-      </article>
-
-      <article class="card">
-        <div class="image-wrap">
-          <img
-            src="images.jfif"
-            alt="Hồ nước và rừng hoa anh đào Minecraft"
-            onclick="openImage(this)"
-          >
-        </div>
-
-        <div class="card-content">
-          <h3>Cherry Blossom</h3>
-          <p>
-            Hồ nước trong xanh, những cánh hoa anh đào
-            bay trong gió và bầu trời đầy mây.
-          </p>
-          <span class="category">🌸 Landscape</span>
-        </div>
-      </article>
-
-    </div>
-  </section>
-
-  <section class="about" id="about">
-    <h2>About <span style="color:#8ce477">Minecraft World</span></h2>
-    <p>
-      Minecraft không chỉ là một trò chơi mà còn là nơi
-      trí tưởng tượng trở thành hiện thực. Hãy sáng tạo,
-      xây dựng và khám phá những thế giới độc đáo theo
-      phong cách của riêng bạn.
-    </p>
-  </section>
-
-  <footer>
-    © 2026 Minecraft World | Created with ❤️ and creativity
-  </footer>
-
-  <div class="lightbox" id="lightbox" onclick="closeImage()">
-    <span class="close">&times;</span>
-    <img id="lightbox-img" src="" alt="Ảnh Minecraft phóng to">
-  </div>
-
-  <script>
-    function openImage(img) {
-      const lightbox = document.getElementById("lightbox");
-      const lightboxImg = document.getElementById("lightbox-img");
-
-      lightboxImg.src = img.src;
-      lightbox.style.display = "flex";
-    }
-
-    function closeImage() {
-      document.getElementById("lightbox").style.display = "none";
-    }
-
-    document.addEventListener("keydown", function(event) {
-      if (event.key === "Escape") {
-        closeImage();
-      }
-    });
-  </script>
 
 </body>
 </html>
